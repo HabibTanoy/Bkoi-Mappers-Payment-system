@@ -23,18 +23,17 @@ class ApiDataFetch extends Component {
                     let total_added = user.p_count + user.v_count;
                     let amount = this.calculation(total_added);
                     let TaAmount = this.TaCalculation(total_added);
+                    let TotalAmount = amount + TaAmount;
                     found_user.p_count += user.p_count;
                     found_user.v_count += user.v_count;
                     found_user.total_count += total_added;
                     found_user.add_history = found_user.add_history +'+'+ total_added;
                     found_user.cash_history = found_user.cash_history +'+'+ amount;
-                    found_user.amount = amount;
+                    found_user.amount += TotalAmount;
                 }else{
                     let total_added = user.p_count + user.v_count;
                     let amount = this.calculation(total_added);
                     let TaAmount = this.TaCalculation(total_added);
-                    let total_Amount = amount + TaAmount;
-                    // console.log(TaAmount);
                     users_container.push({
                         'user_id' : user.id,
                         'user_name' : user.name,
@@ -43,7 +42,7 @@ class ApiDataFetch extends Component {
                         'total_count' : total_added,
                         'add_history' : total_added,
                         'cash_history' : amount,
-                        'amount' : total_Amount
+                        'amount' : amount + TaAmount
                     });
                 }
             });
